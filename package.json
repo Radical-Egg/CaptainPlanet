@@ -1,0 +1,17 @@
+{
+  "name": "CaptainPlanet",
+  "version": "1.0.0",
+  "description": "Captain Planet is back and this time it's serious",
+  "main": "index.js",
+  "repository": "git@github.com:Radical-Egg/CaptainPlanet.git",
+  "author": "Radical Egg <luther.jaymen@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "axios": "^0.27.2",
+    "dotenv": "^16.0.1"
+  },
+  "devDependencies": {
+    "nodemod": "^3.0.6"
+  }
+}
