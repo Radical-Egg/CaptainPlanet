@@ -12,7 +12,9 @@ const { Collection, Client, GatewayIntentBits } = require("discord.js");
 
 class CaptainPlanet {
   constructor() {
-    this.client = new Client({ intents: [GatewayIntentBits.Guilds] });
+    this.client = new Client({
+      intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+    });
     this.client.commands = new Collection();
 
     // When the client is ready, run this code (only once)
