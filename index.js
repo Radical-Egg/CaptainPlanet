@@ -1,9 +1,11 @@
-require("dotenv").config();
-
+const { TOKEN, LEAGUE_ID } = require("./config.json");
 const SleeperController = require("./controllers/SleeperController");
+const CaptainPlanet = require("./bot/CaptainPlanet");
+// Require the necessary discord.js classes
 
-let control = new SleeperController(process.env.LEAGUE_ID, "2022", "nfl");
+const capt = new CaptainPlanet();
 
-/*control.GetLeague().then((response) => {
-  console.log(response);
-});*/
+// Login to Discord with your client's token
+capt.GetClient().login(TOKEN);
+
+// let control = new SleeperController(LEAGUE_ID, "2022", "nfl");
