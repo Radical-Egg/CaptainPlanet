@@ -1,28 +1,31 @@
 const axios = require("axios");
 
-class SleeperController {
-  constructor(id, season, sport) {
-    this.id = id;
-    this.season = season;
-    this.sport = sport;
+const GetLeagueUsers = async (league_id) => {
+  // https://api.sleeper.app/v1/league/<league_id>/users
+  try {
+    const response = await axios.get(
+      `https://api.sleeper.app/v1/league/${league_id}/users`
+    );
+    return response.data;
+  } catch (error) {
+    return error;
   }
-  GetLeagueUsers() {
-    console.log("GetLeagueUsers");
+};
+
+const GetLeagueInfo = async (league_id) => {
+  //https://api.sleeper.app/v1/league/<league-id>
+  try {
+    const response = await axios.get(
+      `https://api.sleeper.app/v1/league/${league_id}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(`Unable to get League Info ${error}`);
+    return error;
   }
-  GetLeague = async () => {
-    //https://api.sleeper.app/v1/league/<league-id>
-    try {
-      const response = await axios.get(
-        `https://api.sleeper.app/v1/league/${this.id}`
-      );
-      return response.data;
-    } catch (error) {
-      return error;
-    }
-  };
-  GetWeeklyMatchups() {
-    console.log("GetWeeklyMatchups");
-  }
+};
+function GetWeeklyMatchups() {
+  console.log("GetWeeklyMatchups");
 }
 
-module.exports = SleeperController;
+module.exports = { GetLeagueUsers, GetLeagueInfo, GetWeeklyMatchups };

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { TOKEN, LEAGUE_ID } = require("./config.json");
 const SleeperController = require("./controllers/SleeperController");
 const CaptainPlanet = require("./bot/CaptainPlanet");
