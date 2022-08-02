@@ -1,7 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const { dirname } = require("path");
-const appDir = dirname(require.main.filename);
-const { GetLeagueInfo } = require(`${appDir}/controllers/SleeperController`);
+const { GetLeagueInfo } = require(`../controllers/LeagueInfo`);
 
 module.exports = {
   data: new SlashCommandBuilder()

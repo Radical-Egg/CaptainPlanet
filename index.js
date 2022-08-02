@@ -1,7 +1,11 @@
 require("dotenv").config();
+// TODO
+/**
+ * Remove config.json references in place of dotenv
+ * This will make it easier to deploy with docker
+ */
 const { TOKEN, LEAGUE_ID } = require("./config.json");
-const SleeperController = require("./controllers/SleeperController");
-const CaptainPlanet = require("./bot/CaptainPlanet");
+const CaptainPlanet = require("./src/CaptainPlanet");
 // Require the necessary discord.js classes
 
 const capt = new CaptainPlanet();

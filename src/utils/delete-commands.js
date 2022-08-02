@@ -6,7 +6,7 @@
 
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord.js");
-const { CLIENT_ID, GUILD_ID, TOKEN } = require("../config.json");
+const { CLIENT_ID, GUILD_ID, TOKEN } = require(`../../config.json`);
 
 const rest = new REST({ version: "10" }).setToken(TOKEN);
 
