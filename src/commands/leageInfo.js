@@ -1,12 +1,13 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const { GetLeagueInfo } = require(`../controllers/LeagueInfo`);
+const { LEAGUE_ID } = require(`../../config.json`);
 
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("leagueinfo")
     .setDescription("Information about the league"),
   async execute(interaction) {
-    const league = await GetLeagueInfo(process.env.LEAGUE_ID);
+    const league = await GetLeagueInfo(LEAGUE_ID);
 
     const infoEmbed = new EmbedBuilder()
       .setColor(0x0099ff)

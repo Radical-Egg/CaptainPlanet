@@ -6,24 +6,31 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-/**
- * Read through the ./events folder and load in all event files
- */
-const EventRegister = (client) => {
-  const eventsPath = path.join(__dirname, "events");
-  const eventFiles = fs
-    .readdirSync(eventsPath)
-    .filter((file) => file.endsWith(".js"));
+class EventHandler {
+  constructor(client) {
+    this.client = client;
 
-  for (const file of eventFiles) {
-    const filePath = path.join(eventsPath, file);
-    const event = require(filePath);
-    if (event.once) {
-      client.once(event.name, (...args) => event.execute(...args));
-    } else {
-      client.on(event.name, (...args) => event.execute(...args));
-    }
+    this.EventRegister(this.client);
   }
-};
+  /**
+   * Read through the ./events folder and load in all event files
+   */
+  EventRegister = () => {
+    const eventsPath = path.join(__dirname, "events");
+    const eventFiles = fs
+      .readdirSync(eventsPath)
+      .filter((file) => file.endsWith(".js"));
 
-module.exports = { EventRegister };
+    for (const file of eventFiles) {
+      const filePath = path.join(eventsPath, file);
+      const event = require(filePath);
+      if (event.once) {
+        this.client.once(event.name, (...args) => event.execute(...args));
+      } else {
+        this.client.on(event.name, (...args) => event.execute(...args));
+      }
+    }
+  };
+}
+
+module.exports = EventHandler;
