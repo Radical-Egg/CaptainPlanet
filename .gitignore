@@ -105,3 +105,6 @@ dist
 
 *.uxf
 config.json
+
+*.sql
+*.sqlite

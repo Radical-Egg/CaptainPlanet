@@ -1,5 +1,6 @@
 const CommandHandler = require("./Commands");
 const EventHandler = require("./Events");
+const GuildModel = require("./Models/Guilds");
 const { TOKEN } = require("../config.json");
 const { Collection, Client, GatewayIntentBits } = require("discord.js");
 
@@ -25,6 +26,8 @@ class CaptainPlanet {
        */
       const commandHandler = new CommandHandler(this.client);
       const eventHandler = new EventHandler(this.client);
+      const guild = new GuildModel();
+      guild.sync();
     });
   }
   GetClient() {
