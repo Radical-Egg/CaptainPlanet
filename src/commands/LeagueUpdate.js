@@ -3,7 +3,7 @@ const GuildModel = require("../Models/Guilds");
 
 module.exports = {
   data: new SlashCommandBuilder()
-    .setName("register")
+    .setName("update")
     .setDescription("Replies with Pong!")
     .addStringOption((option) =>
       option
@@ -13,19 +13,12 @@ module.exports = {
     ),
 
   async execute(interaction) {
-    console.log(interaction.guildId);
-    console.log(interaction.options.getString("league-id"));
-
-    guild_data = {
-      guildID: interaction.guildId,
-      leagueID: interaction.options.getString("league-id"),
-    };
-
     try {
       const guild = new GuildModel();
-      register = await guild.create(guild_data);
-      console.log(register);
-      await interaction.reply(register);
+      update = await guild.update(interaction.guildId, {
+        leagueID: interaction.options.getString("league-id"),
+      });
+      await interaction.reply(update);
     } catch (error) {
       await interaction.reply(error);
     }

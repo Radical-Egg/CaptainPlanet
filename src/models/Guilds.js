@@ -44,6 +44,18 @@ class Guilds {
 
     return interaction.reply(`Could not find league: ${guild_data.league_id}`);
   };
+
+  update = async (guild_id, updated_data) => {
+    const updateRows = await this.Guilds.update(guild_data, {
+      where: { guildID: guild_id },
+    });
+
+    if (updateRows > 0) {
+      return `New League ID: ${updated_data.leagueID}.`;
+    }
+
+    throw `Could not find a leagueID for this Server. Try using the /register command`;
+  };
 }
 
 module.exports = Guilds;
