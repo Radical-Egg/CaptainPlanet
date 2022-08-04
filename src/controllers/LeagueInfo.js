@@ -6,7 +6,9 @@ const GetLeagueInfo = async (guild_id) => {
   try {
     const guild = new GuildModel();
 
-    let league_id = await guild.retrieve(guild_id);
+    let league_data = await guild.retrieve(guild_id);
+    let league_id = league_data.get("leagueID");
+
     const response = await axios.get(
       `https://api.sleeper.app/v1/league/${league_id}`
     );

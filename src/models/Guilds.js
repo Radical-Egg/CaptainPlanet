@@ -39,10 +39,10 @@ class Guilds {
     });
 
     if (guild) {
-      return guild.get("leagueID");
+      return guild;
     }
 
-    return interaction.reply(`Could not find leagueID for this server}`);
+    throw `Could not find leagueID for this server`;
   };
 
   update = async (guild_id, updated_data) => {

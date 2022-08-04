@@ -4,7 +4,7 @@ const GuildModel = require("../Models/Guilds");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("register")
-    .setDescription("Replies with Pong!")
+    .setDescription("Register your league")
     .addStringOption((option) =>
       option
         .setName("league-id")
