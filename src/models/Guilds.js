@@ -33,20 +33,20 @@ class Guilds {
     }
     return `Created ${guild_data.guildID} with leagueID: ${guild_data.leagueID}`;
   };
-  retrieve = async (guild_data) => {
+  retrieve = async (guild_id) => {
     const guild = await this.Guilds.findOne({
-      where: { name: guild_data.guildID },
+      where: { guildID: guild_id },
     });
 
     if (guild) {
-      return interaction.reply(guild.get("leagueID"));
+      return guild.get("leagueID");
     }
 
-    return interaction.reply(`Could not find league: ${guild_data.league_id}`);
+    return interaction.reply(`Could not find leagueID for this server}`);
   };
 
   update = async (guild_id, updated_data) => {
-    const updateRows = await this.Guilds.update(guild_data, {
+    const updateRows = await this.Guilds.update(updated_data, {
       where: { guildID: guild_id },
     });
 

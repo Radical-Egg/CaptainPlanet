@@ -7,7 +7,7 @@ module.exports = {
     .setName("leagueinfo")
     .setDescription("Information about the league"),
   async execute(interaction) {
-    const league = await GetLeagueInfo(LEAGUE_ID);
+    const league = await GetLeagueInfo(interaction.guildId);
 
     const infoEmbed = new EmbedBuilder()
       .setColor(0x0099ff)
