@@ -31,3 +31,10 @@ rest
   .put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), { body: commands })
   .then(() => console.log("Successfully registered application commands."))
   .catch(console.error);
+
+rest
+  .put(Routes.applicationCommands(CLIENT_ID), { body: commands })
+  .then(() =>
+    console.log("Successfully registered global application commands.")
+  )
+  .catch(console.error);

@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
-const GuildModel = require("../Models/Guilds");
+const { register } = require("../controllers/LeagueRegisterController");
+const { GetLeagueInfo } = require("../controllers/LeagueInfoController");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -14,16 +15,35 @@ module.exports = {
 
   async execute(interaction) {
     guild_data = {
+      _id: interaction.guildId,
       guildID: interaction.guildId,
       leagueID: interaction.options.getString("league-id"),
     };
 
     try {
-      const guild = new GuildModel();
-      register = await guild.create(guild_data);
-      await interaction.reply(register);
+      const response = await register(guild_data);
+      league = await GetLeagueInfo(response.guildID);
+
+      await interaction.reply(
+        `${league.name} has been registered with this server`
+      );
     } catch (error) {
-      await interaction.reply(error);
+      var response;
+
+      switch (error.code) {
+        case "ERR_BAD_REQUEST":
+          response =
+            "This League does not exist, please check your league ID and try registering again.";
+          break;
+        case 11000:
+          response =
+            "There is already a leagueID associated with this server. Run the /update command if you need to change it.";
+          break;
+        default:
+          response = "An Error has occurred when executing this command";
+          break;
+      }
+      await interaction.reply(response);
     }
   },
 };
