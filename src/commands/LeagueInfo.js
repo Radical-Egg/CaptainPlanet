@@ -9,7 +9,8 @@ module.exports = {
     try {
       const league = await GetLeagueInfo(interaction.guildId);
     } catch (error) {
-      throw error;
+      await interaction.reply(error);
+      return;
     }
 
     const infoEmbed = new EmbedBuilder()
