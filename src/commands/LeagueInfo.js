@@ -33,7 +33,18 @@ module.exports = {
 
       await interaction.reply({ embeds: [infoEmbed] });
     } catch (error) {
-      await interaction.reply(error);
+      var err_response;
+      switch (error) {
+        case 404:
+          err_response =
+            "This league does not exist! Please check your leagueID";
+          break;
+        default:
+          err_response =
+            "Unable to get League Info - Make sure your league is registered. See /help";
+          break;
+      }
+      await interaction.reply(err_response);
     }
   },
 };
