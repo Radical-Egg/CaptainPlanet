@@ -19,15 +19,13 @@ const register = async (guild_data) => {
         if (err) {
           console.log(err);
           throw err;
-        } else {
-          console.log("Updated Guild Entry ", resp);
         }
       }
     );
-
+    console.log("success!");
     return guild._update;
   } catch (error) {
-    throw error;
+    throw error.code;
   }
 };
 

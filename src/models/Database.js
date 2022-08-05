@@ -40,7 +40,9 @@ class MongoDB {
       console.log("connection closed");
     } catch (error) {
       console.log(error);
+      throw error;
     }
+    return true;
   };
 }
 

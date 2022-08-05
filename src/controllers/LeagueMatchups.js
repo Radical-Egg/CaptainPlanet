@@ -1,5 +1,6 @@
 const axios = require("axios");
 const { GetLeagueSportState } = require("./LeagueSportState");
+const { GetLeagueUsers } = require("./LeagueUsersController");
 
 /** // TODO
  *  process matchup data

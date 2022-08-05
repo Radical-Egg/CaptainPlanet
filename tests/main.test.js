@@ -1,0 +1,2 @@
+require("./league");
+require("./guild");

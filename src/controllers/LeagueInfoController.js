@@ -21,7 +21,7 @@ const GetLeagueInfo = async (guild_id) => {
     return response.data;
   } catch (error) {
     console.log(`Unable to get League Info ${error}`);
-    throw "Unable to retrieve league information - Make sure your league is registered. See /help command";
+    throw error.response.status;
   }
 };
 

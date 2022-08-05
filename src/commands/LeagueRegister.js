@@ -22,15 +22,12 @@ module.exports = {
 
     try {
       const response = await register(guild_data);
-      league = await GetLeagueInfo(response.guildID);
-
-      await interaction.reply(
-        `${league.name} has been registered with this server`
-      );
+      const league = await GetLeagueInfo(response.guildID);
+      await interaction.reply(`${league.name} has been registered!`);
+      return;
     } catch (error) {
       var response;
-
-      switch (error.code) {
+      switch (error) {
         case "ERR_BAD_REQUEST":
           response =
             "This League does not exist, please check your league ID and try registering again.";
@@ -39,10 +36,15 @@ module.exports = {
           response =
             "There is already a leagueID associated with this server. Run the /update command if you need to change it.";
           break;
+        case 404:
+          response =
+            "Unable to retrieve league information from the sleeper API. Check your LeagueID and try again";
+          break;
         default:
           response = "An Error has occurred when executing this command";
           break;
       }
+
       await interaction.reply(response);
     }
   },
