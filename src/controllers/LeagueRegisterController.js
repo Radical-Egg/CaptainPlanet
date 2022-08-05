@@ -22,7 +22,6 @@ const register = async (guild_data) => {
         }
       }
     );
-    console.log("success!");
     return guild._update;
   } catch (error) {
     throw error.code;
