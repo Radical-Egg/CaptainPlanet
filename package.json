@@ -1,5 +1,5 @@
 {
-  "name": "CaptainPlanet",
+  "name": "captain-planet",
   "version": "1.0.0",
   "description": "Captain Planet is back and this time it's serious",
   "main": "index.js",
@@ -8,7 +8,10 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "dev": "nodemon index.js",
+    "docker:dev": "docker-compose up",
+    "docker:deploy": "docker-compose up -d"
   },
   "dependencies": {
     "@discordjs/rest": "^1.0.1",
@@ -17,6 +20,7 @@
     "dotenv": "^16.0.1",
     "mongodb": "^4.8.1",
     "mongoose": "^6.5.1",
+    "nodemon": "^2.0.19",
     "sequelize": "^6.21.3",
     "sqlite3": "^5.0.11"
   },

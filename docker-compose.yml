@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  captain-planet:
+    container_name: captain-planet-bot
+    image: captain-planet
+    build: .
+    environment:
+      NODE_ENV: development
+    command: npm run dev
+    volumes:
+      # mount current dir into docker container
+      - .:/captain-planet
+      - ./egg-mongoDB.pem:/etc/pki/X509/egg-mongoDB.pem
+      # ignore local node_modules, use container
+      - /captain-planet/node_modules

@@ -1,6 +1,6 @@
 const { GUILD_ID, LEAGUE_ID } = require("../config.json");
 const MongoDB = require("../src/models/Database");
-const { GetLeagueUsers } = require("../src/controllers/LeagueUsersController");
+const { GetLeagueUsers } = require("../src/controllers/LeagueUsers");
 const axios = require("axios");
 
 jest.mock("axios");
