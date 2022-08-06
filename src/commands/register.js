@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("discord.js");
-const { register } = require("../controllers/LeagueRegisterController");
-const { GetLeagueInfo } = require("../controllers/LeagueInfoController");
+const { register } = require("../controllers/LeagueRegister");
+const { GetLeagueInfo } = require("../controllers/LeagueInfo");
 
 module.exports = {
   data: new SlashCommandBuilder()
