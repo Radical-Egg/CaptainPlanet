@@ -27,10 +27,20 @@ const rest = new REST({ version: "10" }).setToken(TOKEN);
  * Guild refers to server, if we want to register applications globally we need to use
  * Routes.applicationCommands
  */
-rest
-  .put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), { body: commands })
-  .then(() => console.log("Successfully registered application commands."))
-  .catch(console.error);
+
+/**
+ * Before we use this we will need to update the commands variable to read a directory specific for guild commands
+ * Otherwise every command will get registered twice.
+ * 
+ * GUILD_ID.forEach((id) => {
+  rest
+    .put(Routes.applicationGuildCommands(CLIENT_ID, id), {
+      body: commands,
+    })
+    .then(() => console.log("Successfully registered application commands."))
+    .catch(console.error);
+});
+ */
 
 rest
   .put(Routes.applicationCommands(CLIENT_ID), { body: commands })
