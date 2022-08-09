@@ -109,3 +109,4 @@ config.json
 *.sql
 *.sqlite
 *.pem
+player_data.json

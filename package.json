@@ -11,6 +11,7 @@
     "test": "jest",
     "dev": "nodemon index.js",
     "docker:dev": "docker-compose up",
+    "docker:test": "docker run --rm -it -v $(pwd)/egg-mongoDB.pem:/etc/pki/X509/egg-mongoDB.pem -v $(pwd):/usr/app captain-planet:latest yarn test",
     "docker:deploy": "docker-compose up -d",
     "add:commands": "docker run --rm -it captain-planet:latest node ./src/utils/deploy-commands.js",
     "remove:commands": "docker run --rm -it captain-planet:latest node ./src/utils/delete-commands.js"
