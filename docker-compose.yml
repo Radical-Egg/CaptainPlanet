@@ -10,7 +10,7 @@ services:
     command: npm run dev
     volumes:
       # mount current dir into docker container
-      - .:/captain-planet
+      - .:/usr/app
       - ./egg-mongoDB.pem:/etc/pki/X509/egg-mongoDB.pem
       # ignore local node_modules, use container
-      - /captain-planet/node_modules
+      - /usr/app/node_modules

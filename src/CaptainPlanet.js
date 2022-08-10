@@ -15,6 +15,7 @@ class CaptainPlanet {
     this.client = new Client({
       intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
     });
+    const eventHandler = new EventHandler(this.client);
 
     // When the client is ready, run this code (only once)
     this.client.once("ready", () => {
@@ -24,7 +25,6 @@ class CaptainPlanet {
        * see deploy-commands.js and delete-commands.js
        */
       const commandHandler = new CommandHandler(this.client);
-      const eventHandler = new EventHandler(this.client);
     });
   }
   GetClient() {
