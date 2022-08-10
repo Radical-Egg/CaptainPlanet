@@ -51,31 +51,3 @@ module.exports = {
     await interaction.reply({ content: "Channels created!" });
   },
 };
-
-/**
- * 
- * 
-    const t = interaction.member.guild.channels.cache.find(
-      (channel) =>
-        channel.type === ChannelType.GUILD_CATEGORY && channel.name === "test"
-    );
-    if (
-      !interaction.member.guild.channels.cache.find(
-        (channel) => channel.name === "trades"
-      )
-    ) {
-      interaction.member.guild.channels
-        .create(
-          {
-            name: "trades2",
-            topic: "text-channels",
-          },
-          "Creating a channel for trades"
-        )
-        .then((chan) => {
-          console.log("HERE!!!");
-          chan.setParent("1006853899472351242");
-        })
-        .catch((err) => console.log(err));
-    }
- */
