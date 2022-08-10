@@ -1,6 +1,44 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, ChannelType } = require("discord.js");
 const { register } = require("../controllers/LeagueRegister");
 const { GetLeagueInfo } = require("../controllers/LeagueInfo");
+const { createChannel } = require("../controllers/CreateChannel");
+
+const CreateInitialChannels = async (interaction) => {
+  try {
+    const tradeCateData = {
+      body: {
+        name: "SLEEPER UPDATES",
+        type: ChannelType.GuildCategory,
+      },
+      reason: "Creating a new category for sleeper API updates",
+    };
+
+    const tradeChanData = {
+      body: {
+        name: "trades",
+        type: ChannelType.GuildText,
+      },
+      reason: "creating a channel for trades",
+    };
+
+    const tradeCateChannel = await createChannel(
+      interaction.member.guild.channels,
+      tradeCateData
+    );
+
+    const tradeChannel = await createChannel(
+      interaction.member.guild.channels,
+      tradeChanData
+    );
+
+    tradeChannel.setParent(tradeCateChannel.id);
+
+    return true;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -23,6 +61,8 @@ module.exports = {
     try {
       const response = await register(guild_data);
       const league = await GetLeagueInfo(response.guildID);
+      await CreateInitialChannels(interaction);
+
       await interaction.reply(`${league.name} has been registered!`);
       return;
     } catch (error) {
