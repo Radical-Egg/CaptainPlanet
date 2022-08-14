@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const { leagueScehma } = require("./League");
 
 const guildSchema = new mongoose.Schema({
   _id: String,
@@ -7,6 +8,7 @@ const guildSchema = new mongoose.Schema({
     required: true,
   },
   leagueID: String,
+  league: leagueScehma,
 });
 
 guildSchema.pre("findOneAndUpdate", function (next) {

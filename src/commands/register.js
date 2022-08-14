@@ -2,36 +2,22 @@ const { SlashCommandBuilder, ChannelType } = require("discord.js");
 const { register } = require("../controllers/LeagueRegister");
 const { GetLeagueInfo } = require("../controllers/LeagueInfo");
 const { createChannel } = require("../controllers/CreateChannel");
+const ChannelData = require("../lib/channel_data.json");
 
 const CreateInitialChannels = async (interaction) => {
   try {
-    const tradeCateData = {
-      body: {
-        name: "SLEEPER UPDATES",
-        type: ChannelType.GuildCategory,
-      },
-      reason: "Creating a new category for sleeper API updates",
-    };
-
-    const tradeChanData = {
-      body: {
-        name: "trades",
-        type: ChannelType.GuildText,
-      },
-      reason: "creating a channel for trades",
-    };
-
     const tradeCateChannel = await createChannel(
       interaction.member.guild.channels,
-      tradeCateData
+      ChannelData["TradesCategory"]
     );
 
-    const tradeChannel = await createChannel(
-      interaction.member.guild.channels,
-      tradeChanData
-    );
-
-    tradeChannel.setParent(tradeCateChannel.id);
+    ChannelData["TradesCategory"]["Channels"].forEach(async (channel) => {
+      let chan = await createChannel(
+        interaction.member.guild.channels,
+        channel
+      );
+      chan.setParent(tradeCateChannel.id);
+    });
 
     return true;
   } catch (error) {
@@ -59,8 +45,15 @@ module.exports = {
     };
 
     try {
+      const league = await GetLeagueInfo(guild_data.leagueID);
+
+      guild_data["league"] = {
+        _id: `scores-${guild_data.leagueID}`,
+        scoring_settings: league.scoring_settings,
+      };
+
       const response = await register(guild_data);
-      const league = await GetLeagueInfo(response.guildID);
+
       await CreateInitialChannels(interaction);
 
       await interaction.reply(`${league.name} has been registered!`);
@@ -82,6 +75,7 @@ module.exports = {
           break;
         default:
           response = "An Error has occurred when executing this command";
+          console.log(error);
           break;
       }
 

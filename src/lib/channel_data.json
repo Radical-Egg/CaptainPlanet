@@ -1,0 +1,32 @@
+{
+  "TradesCategory": {
+    "body": {
+      "name": "SLEEPER UPDATES",
+      "type": 4
+    },
+    "reason": "Creating a new category for sleeper API updates",
+    "Channels": [
+      {
+        "body": {
+          "name": "trades",
+          "type": 0
+        },
+        "reason": "Creating a channel for sleeper trades"
+      },
+      {
+        "body": {
+          "name": "free-agent-pickups",
+          "type": 0
+        },
+        "reason": "Creating a channel for sleeper free agent pickups"
+      },
+      {
+        "body": {
+          "name": "score-settings",
+          "type": 0
+        },
+        "reason": "Creating a channel for sleeper score settings and changes"
+      }
+    ]
+  }
+}

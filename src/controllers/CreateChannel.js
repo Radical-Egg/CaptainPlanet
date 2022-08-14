@@ -13,7 +13,7 @@ const createChannel = async (ChannelManager, request) => {
   try {
     const findChannel = await ChannelManager.cache.find(
       (channel) =>
-        channel.type == request.body.type && channel.name == request.body.name
+        channel.type === request.body.type && channel.name === request.body.name
     );
 
     if (!findChannel) {
