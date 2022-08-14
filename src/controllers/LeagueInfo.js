@@ -6,12 +6,10 @@ const Guild = require("../models/Guild");
  * The league ID comes from the Guild model in the database
  */
 
-const GetLeagueInfo = async (guild_id) => {
+const GetLeagueInfo = async (league_id) => {
   try {
-    const guild = await Guild.findById(guild_id);
-
     const response = await axios.get(
-      `https://api.sleeper.app/v1/league/${guild.leagueID}`
+      `https://api.sleeper.app/v1/league/${league_id}`
     );
 
     if (response.data === null) {

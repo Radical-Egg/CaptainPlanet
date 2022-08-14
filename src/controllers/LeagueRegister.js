@@ -6,6 +6,9 @@ const Guild = require("../models/Guild");
  * This will allow the bot to handle multiple discord servers
  * The register command will create the DB entry if it does not exist
  * If it does exist it will update it
+ *
+ * This function actually is just going to be used to find and update the guild model, possibly
+ * need to rename
  */
 
 const register = async (guild_data) => {
