@@ -1,5 +1,5 @@
 const { GetLeagueInfo } = require("../controllers/LeagueInfo");
-
+const Guild = require("../models/Guild");
 /**
  *
  * Notify when there has been a change to score settings
@@ -16,10 +16,26 @@ const { GetLeagueInfo } = require("../controllers/LeagueInfo");
 
 module.exports = {
   name: "scoreSettings",
-  execute(client) {
+  async execute(client) {
     const Guilds = client.guilds.cache.map((guild) => guild.id);
+    const GuildRecords = await Guild.find({ _id: { $in: Guilds } });
 
-    Guilds.forEach(async (guild) => {
+    GuildRecords.forEach(async (guild) => {
+      let g = client.guilds.cache.get(guild.guildID);
+      const chan = await g.channels.cache.find(
+        (channel) => channel.name === "score-settings"
+      );
+      if (chan) {
+        chan.send(guild.league.scoring_settings.def_pr_yd.toString());
+      }
+    });
+  },
+};
+
+/**
+ * 
+ * 
+ *     Guilds.forEach(async (guild) => {
       try {
         let g = client.guilds.cache.get(guild);
 
@@ -35,5 +51,4 @@ module.exports = {
         throw error;
       }
     });
-  },
-};
+ */

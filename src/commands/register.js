@@ -4,6 +4,11 @@ const { GetLeagueInfo } = require("../controllers/LeagueInfo");
 const { createChannel } = require("../controllers/CreateChannel");
 const ChannelData = require("../lib/channel_data.json");
 
+// TODO
+/**
+ * Move this function to a controller and away from the view
+ */
+
 const CreateInitialChannels = async (interaction) => {
   try {
     const tradeCateChannel = await createChannel(
