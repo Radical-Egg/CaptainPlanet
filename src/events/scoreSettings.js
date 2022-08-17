@@ -1,4 +1,4 @@
-const { GetLeagueInfo } = require("../controllers/LeagueInfo");
+const { GetLeagueInfo } = require("../controllers/LeagueController");
 const Guild = require("../models/Guild");
 /**
  *
@@ -6,9 +6,9 @@ const Guild = require("../models/Guild");
  * Pin latest score settings when a change occurs
  */
 
+// TODO
 /**
  *
- * TODO
  * - From the list of guilds, get a list of guilds that have been registered in the database
  * - pull the scoring settings and message the channel with just the json for now
  * - create an embed object to use as the view

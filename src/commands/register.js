@@ -1,35 +1,7 @@
 const { SlashCommandBuilder, ChannelType } = require("discord.js");
-const { register } = require("../controllers/LeagueRegister");
-const { GetLeagueInfo } = require("../controllers/LeagueInfo");
-const { createChannel } = require("../controllers/CreateChannel");
-const ChannelData = require("../lib/channel_data.json");
-
-// TODO
-/**
- * Move this function to a controller and away from the view
- */
-
-const CreateInitialChannels = async (interaction) => {
-  try {
-    const tradeCateChannel = await createChannel(
-      interaction.member.guild.channels,
-      ChannelData["TradesCategory"]
-    );
-
-    ChannelData["TradesCategory"]["Channels"].forEach(async (channel) => {
-      let chan = await createChannel(
-        interaction.member.guild.channels,
-        channel
-      );
-      chan.setParent(tradeCateChannel.id);
-    });
-
-    return true;
-  } catch (error) {
-    console.log(error);
-    throw error;
-  }
-};
+const { CreateOrUpdateGuild } = require("../controllers/GuildController");
+const { GetLeagueInfo } = require("../controllers/LeagueController");
+const { CreateInitialChannels } = require("../controllers/CreateChannel");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -50,14 +22,14 @@ module.exports = {
     };
 
     try {
-      const league = await GetLeagueInfo(guild_data.leagueID);
+      const league = await GetLeagueInfo(interaction.guildId);
 
       guild_data["league"] = {
         _id: `scores-${guild_data.leagueID}`,
         scoring_settings: league.scoring_settings,
       };
 
-      const response = await register(guild_data);
+      const response = await CreateOrUpdateGuild(guild_data);
 
       await CreateInitialChannels(interaction);
 

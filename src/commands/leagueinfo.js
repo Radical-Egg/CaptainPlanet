@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
-const { GetLeagueInfo } = require(`../controllers/LeagueInfo`);
+const { GetLeagueInfo } = require(`../controllers/LeagueController`);
 
 module.exports = {
   data: new SlashCommandBuilder()

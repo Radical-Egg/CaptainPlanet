@@ -1,6 +1,6 @@
 const { GUILD_ID, LEAGUE_ID } = require("../config.json");
 const MongoDB = require("../src/models/Database");
-const { register } = require("../src/controllers/LeagueRegister");
+const { CreateOrUpdateGuild } = require("../src/controllers/GuildController");
 const axios = require("axios");
 
 MongoDB.init();
@@ -19,7 +19,7 @@ describe("Create or Update guild document", () => {
         data: guild_data,
       });
 
-      const guild = await register(guild_data);
+      const guild = await CreateOrUpdateGuild(guild_data);
       expect(guild.guildID).toEqual(element);
     });
   });

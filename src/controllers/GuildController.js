@@ -11,7 +11,7 @@ const Guild = require("../models/Guild");
  * need to rename
  */
 
-const register = async (guild_data) => {
+const CreateOrUpdateGuild = async (guild_data) => {
   try {
     const options = { upsert: true, new: true };
     const guild = Guild.findByIdAndUpdate(
@@ -31,4 +31,4 @@ const register = async (guild_data) => {
   }
 };
 
-module.exports = { register };
+module.exports = { CreateOrUpdateGuild };
