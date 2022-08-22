@@ -22,10 +22,10 @@ module.exports = {
     };
 
     try {
-      const league = await GetLeagueInfo(interaction.guildId);
+      const league = await GetLeagueInfo(guild_data.leagueID);
 
       guild_data["league"] = {
-        _id: `scores-${guild_data.leagueID}`,
+        _id: `${guild_data.leagueID}`,
         scoring_settings: league.scoring_settings,
       };
 

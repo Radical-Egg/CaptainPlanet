@@ -1,0 +1,22 @@
+{
+  "leagueInfo": {
+    "name": "mock name",
+    "scoring_settings": {
+      "fg": "1234",
+      "passing": "1234"
+    },
+    "keepers": "sure"
+  },
+  "leagueUsers": [
+    {
+      "user_id": "1237478223",
+      "is_bot": false,
+      "display_name": "RadicalEgg"
+    },
+    {
+      "user_id": "1235443234",
+      "is_bot": true,
+      "display_name": "bot_dude"
+    }
+  ]
+}

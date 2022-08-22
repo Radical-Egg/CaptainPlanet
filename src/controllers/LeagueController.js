@@ -38,16 +38,14 @@ const GetLeagueSportState = async () => {
  * The league ID comes from the Guild model in the database
  */
 
-const GetLeagueInfo = async (guild_id) => {
+const GetLeagueInfo = async (league_id) => {
   try {
-    const guild = await Guild.findById(guild_id);
-
-    if (guild.leagueID === undefined) {
+    if (league_id === undefined) {
       throw "There is no league ID assosciated with this guild. Register before using this command";
     }
 
     const response = await axios.get(
-      `https://api.sleeper.app/v1/league/${guild.leagueID}`
+      `https://api.sleeper.app/v1/league/${league_id}`
     );
 
     if (response.data === null) {
@@ -61,13 +59,11 @@ const GetLeagueInfo = async (guild_id) => {
   }
 };
 
-const GetLeagueUsers = async (guild_id) => {
+const GetLeagueUsers = async (league_id) => {
   // https://api.sleeper.app/v1/league/<league_id>/users
   try {
-    const guild = await Guild.findById(guild_id);
-
     const response = await axios.get(
-      `https://api.sleeper.app/v1/league/${guild.leagueID}/users`
+      `https://api.sleeper.app/v1/league/${league_id}/users`
     );
 
     return response.data;

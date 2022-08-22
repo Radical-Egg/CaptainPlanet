@@ -1,5 +1,6 @@
 const { GetLeagueInfo } = require("../controllers/LeagueController");
 const Guild = require("../models/Guild");
+const { isEqual } = require("lodash");
 /**
  *
  * Notify when there has been a change to score settings
@@ -21,34 +22,21 @@ module.exports = {
     const GuildRecords = await Guild.find({ _id: { $in: Guilds } });
 
     GuildRecords.forEach(async (guild) => {
+      let leagueInfo = await GetLeagueInfo(guild);
+      let currentScoreSettings = leagueInfo["scoring_settings"];
       let g = client.guilds.cache.get(guild.guildID);
+
       const chan = await g.channels.cache.find(
         (channel) => channel.name === "score-settings"
       );
+
+      if (isEqual(currentScoreSettings, guild.league.scoring_settings)) {
+        console.log("wow!");
+      }
+
       if (chan) {
         chan.send(guild.league.scoring_settings.def_pr_yd.toString());
       }
     });
   },
 };
-
-/**
- * 
- * 
- *     Guilds.forEach(async (guild) => {
-      try {
-        let g = client.guilds.cache.get(guild);
-
-        const chan = await g.channels.cache.find(
-          (channel) => channel.name === "score-settings"
-        );
-
-        if (chan) {
-          chan.send("test");
-        }
-      } catch (error) {
-        console.log(error);
-        throw error;
-      }
-    });
- */
