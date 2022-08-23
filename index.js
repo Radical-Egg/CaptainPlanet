@@ -1,11 +1,15 @@
-const { TOKEN, LEAGUE_ID } = require("./config.json");
+const { TOKEN, LEAGUE_ID, DB_URI } = require("./config.json");
 const CaptainPlanet = require("./src/CaptainPlanet");
 const MongoDB = require("./src/models/Database");
 
-MongoDB.init();
-// Require the necessary discord.js classes
+const main = async () => {
+  MongoDB.init(DB_URI);
+  // Require the necessary discord.js classes
 
-const capt = new CaptainPlanet();
+  const capt = new CaptainPlanet();
 
-// Login to Discord with your client's token
-capt.GetClient().login(TOKEN);
+  // Login to Discord with your client's token
+  capt.GetClient().login(TOKEN);
+};
+
+main();

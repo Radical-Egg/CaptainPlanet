@@ -1,0 +1,31 @@
+{
+  "MockGuild": {
+    "_id": "12345678",
+    "guildID": "12345678",
+    "leaugeID": "098472124",
+    "league": {
+      "_id": "098472124",
+      "scoring_settings": {
+        "fg": "1234",
+        "passing": "1234"
+      },
+      "keepers": "sure"
+    }
+  },
+  "MockGuildScoring": {
+    "league": {
+      "_id": "098472124",
+      "scoring_settings": {
+        "fg": "65973",
+        "passing": "121234",
+        "ret": "12353"
+      },
+      "keepers": "sure"
+    }
+  },
+  "BadMockData": {
+    "some_random_key": 5,
+    "GuildID": "4123",
+    "leagues": "invalid"
+  }
+}

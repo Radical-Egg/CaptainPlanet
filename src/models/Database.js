@@ -10,10 +10,10 @@ class MongoDB {
   constructor() {
     this.db = mongoose.connection;
   }
-  init = async () => {
+  init = async (db_uri) => {
     const credentials = MONGO_CERT;
     await mongoose.connect(
-      DB_STRING,
+      db_uri,
       {
         useNewUrlParser: true,
         useUnifiedTopology: true,
