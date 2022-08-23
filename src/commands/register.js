@@ -1,7 +1,11 @@
 const { SlashCommandBuilder, ChannelType } = require("discord.js");
 const { CreateOrUpdateGuild } = require("../controllers/GuildController");
 const { GetLeagueInfo } = require("../controllers/LeagueController");
-const { CreateInitialChannels } = require("../controllers/CreateChannel");
+const { scoreEmbed } = require("../embeds/Scoring");
+const {
+  CreateInitialChannels,
+  UpdateChannelWithEmbed,
+} = require("../controllers/CreateChannel");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -32,6 +36,11 @@ module.exports = {
       const response = await CreateOrUpdateGuild(guild_data);
 
       await CreateInitialChannels(interaction);
+      await UpdateChannelWithEmbed(
+        interaction,
+        "score-settings",
+        scoreEmbed(league.name, league.scoring_settings)
+      );
 
       await interaction.reply(`${league.name} has been registered!`);
       return;

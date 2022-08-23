@@ -1,5 +1,6 @@
 const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
 const { GetLeagueInfo } = require(`../controllers/LeagueController`);
+const { FindById } = require("../controllers/GuildController");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -7,7 +8,13 @@ module.exports = {
     .setDescription("Information about the league"),
   async execute(interaction) {
     try {
-      const league = await GetLeagueInfo(interaction.guildId);
+      const guild = await FindById(interaction.guildId);
+
+      if (!guild) {
+        throw "Unable to find leagueID for this Discord server";
+      }
+
+      const league = await GetLeagueInfo(guild.leagueID);
       const infoEmbed = new EmbedBuilder()
         .setColor(0x0099ff)
         .setTitle(league.name)
@@ -40,6 +47,7 @@ module.exports = {
             "This league does not exist! Please check your leagueID";
           break;
         default:
+          console.log(error);
           err_response =
             "Unable to get League Info - Make sure your league is registered. See /help";
           break;

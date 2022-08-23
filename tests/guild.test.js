@@ -115,7 +115,7 @@ describe("Update Scoring setting operations", () => {
         guild,
         guild.league.scoring_settings
       );
-      expect(updateGuild).toBe(true);
+      expect(updateGuild).toBe(false);
     } catch (error) {
       throw error;
     }

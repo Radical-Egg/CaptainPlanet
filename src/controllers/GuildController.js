@@ -73,7 +73,7 @@ const FindById = async (req) => {
 const UpdateScoringSettings = async (guild_record, currentScoreSettings) => {
   let recordScoreSettings = guild_record.league.scoring_settings;
   if (isEqual(currentScoreSettings, recordScoreSettings)) {
-    return true;
+    return false;
   } else {
     recordScoreSettings = currentScoreSettings;
     guild_record.league.scoring_settings = currentScoreSettings;
