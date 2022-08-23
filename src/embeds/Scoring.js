@@ -1,5 +1,10 @@
 const { EmbedBuilder } = require("discord.js");
 
+// TODO add scoring data to this embed
+/**
+ *
+ * Review the scoring_settings and update this embed
+ */
 const scoreEmbed = (league_name, scoring_settings) => {
   let fields = [
     { name: "test", value: "some other test" },

@@ -37,7 +37,7 @@ module.exports = {
 
       await CreateInitialChannels(interaction);
       await UpdateChannelWithEmbed(
-        interaction,
+        interaction.member.guild,
         "score-settings",
         scoreEmbed(league.name, league.scoring_settings)
       );

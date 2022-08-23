@@ -1,5 +1,12 @@
 const ChannelData = require("../lib/channel_data.json");
 
+// TODO change namespacing of this file to Channel.js
+/**
+ *
+ * Change namespacing of this file to Channel.js
+ * This file will be controller logic for channels
+ */
+
 const createChannel = async (interaction, request) => {
   const ChannelManager = interaction.member.guild.channels;
   const everyone = interaction.member.guild.roles.everyone.id;
@@ -51,8 +58,13 @@ const CreateInitialChannels = async (interaction) => {
   }
 };
 
-const UpdateChannelWithEmbed = async (interaction, channel_name, embed) => {
-  const allChannels = await interaction.member.guild.channels.fetch(null, {
+// TODO add options object
+/**
+ *
+ * Add options object for functionality like pin/unpin
+ */
+const UpdateChannelWithEmbed = async (guild, channel_name, embed) => {
+  const allChannels = await guild.channels.fetch(null, {
     force: true,
     cache: false,
   });

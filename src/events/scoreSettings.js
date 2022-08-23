@@ -1,13 +1,24 @@
 const { GetLeagueInfo } = require("../controllers/LeagueController");
 const { UpdateScoringSettings } = require("../controllers/GuildController");
+const { scoreEmbed } = require("../embeds/Scoring");
 const Guild = require("../models/Guild");
 const { isEqual } = require("lodash");
+const { UpdateChannelWithEmbed } = require("../controllers/CreateChannel");
 
 /**
  * Score settings event
  * Check the current score settings against the database
  * If there is a change this event will update the database and send
  * an embed to the score-settings channel with the new score settings
+ */
+
+// TODO use UpdateChannelWithEmbed()
+
+/**
+ *
+ * UpdateChannelWithEmbed() in CreateChannel.js to send the scoreEmbed
+ * to the score-settings channel
+ *
  */
 
 module.exports = {
@@ -30,20 +41,13 @@ module.exports = {
         return;
       }
 
-      let g = client.guilds.cache.get(guild.guildID);
+      let memberGuild = client.guilds.cache.get(guild.guildID);
 
-      const chan = await g.channels.cache.find(
-        (channel) => channel.name === "score-settings"
+      await UpdateChannelWithEmbed(
+        memberGuild,
+        "score-settings",
+        scoreEmbed(leagueInfo.name, currentScoreSettings)
       );
-
-      if (chan) {
-        chan.send("There has been a change to the scores!");
-        const scoringEmbed = await scoreEmbed(
-          leagueInfo.name,
-          currentScoreSettings
-        );
-        chan.send({ embeds: [scoringEmbed] });
-      }
     });
   },
 };
