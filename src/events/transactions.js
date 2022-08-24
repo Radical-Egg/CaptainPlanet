@@ -1,9 +1,11 @@
 const Guild = require("../models/Guild");
 
+// TODO Handle Transactions
 /**
  *
  * Get all transactions and send adds/drops/trades to the
  * appropriate channels
+ * I can't really work on this until the season starts
  */
 
 module.exports = {

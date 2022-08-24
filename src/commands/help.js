@@ -30,17 +30,18 @@ module.exports = {
           name: "League Info",
           value: "General information about your league\n\n Usage: /leagueinfo",
         },
+        // TODO add slash command for weekly matchups
         {
           name: "Get the current weeks matchups",
           value: "Weekly matchups\n\n Usage: /weeklymatchups",
         },
+        // TODO add slash command for score settings
         {
           name: "Score settings",
           value:
             "Check current score settings for the leauge\n\n Usage: /scoresettings",
         }
       )
-      //.setImage("https://c.tenor.com/uhVmSda0bSAAAAAd/nfl-squidward.gif")
       .setTimestamp()
       .setFooter({
         text: "\u3000".repeat(20 /*any big number works too*/) + "|",

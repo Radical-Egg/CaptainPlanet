@@ -36,11 +36,15 @@ module.exports = {
       const response = await CreateOrUpdateGuild(guild_data);
 
       await CreateInitialChannels(interaction);
-      await UpdateChannelWithEmbed(
-        interaction.member.guild,
-        "score-settings",
-        scoreEmbed(league.name, league.scoring_settings)
-      );
+      // There is some type of race condition happening
+      // need to use setTimeout for now to update the channels after they have been created
+      setTimeout(() => {
+        UpdateChannelWithEmbed(
+          interaction.member.guild,
+          "score-settings",
+          scoreEmbed(league.name, league.scoring_settings)
+        );
+      }, 2000);
 
       await interaction.reply(`${league.name} has been registered!`);
       return;

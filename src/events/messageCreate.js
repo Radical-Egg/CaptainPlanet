@@ -4,7 +4,5 @@ module.exports = {
     if (message.author.bot) {
       return;
     }
-    message.reply("ok?");
-    console.log("Sent!");
   },
 };
